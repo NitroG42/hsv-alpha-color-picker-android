@@ -25,52 +25,57 @@ import android.widget.FrameLayout;
 
 public class ColorPickerView extends FrameLayout {
 
-	private final AlphaView alphaView;
-	private final EditText hexEdit;
-	private final ObservableColor observableColor = new ObservableColor(0);
-	private final SwatchView swatchView;
+    private final AlphaView alphaView;
+    private final EditText hexEdit;
+    private final ObservableColor observableColor = new ObservableColor(0);
+    private final SwatchView swatchView;
+    private final ValueView valueView;
 
-	public ColorPickerView(Context context) {
-		this(context, null);
-	}
+    public ColorPickerView(Context context) {
+        this(context, null);
+    }
 
-	public ColorPickerView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		LayoutInflater.from(context).inflate(R.layout.picker, this);
+    public ColorPickerView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        LayoutInflater.from(context).inflate(R.layout.picker, this);
 
-		swatchView = (SwatchView)findViewById(R.id.swatchView);
-		swatchView.observeColor(observableColor);
+        swatchView = (SwatchView) findViewById(R.id.swatchView);
+        swatchView.observeColor(observableColor);
 
-		HueSatView hueSatView = (HueSatView)findViewById(R.id.hueSatView);
-		hueSatView.observeColor(observableColor);
+        HueSatView hueSatView = (HueSatView) findViewById(R.id.hueSatView);
+        hueSatView.observeColor(observableColor);
 
-		ValueView valueView = (ValueView)findViewById(R.id.valueView);
-		valueView.observeColor(observableColor);
+        valueView = (ValueView) findViewById(R.id.valueView);
+        valueView.observeColor(observableColor);
 
-		alphaView = (AlphaView)findViewById(R.id.alphaView);
-		alphaView.observeColor(observableColor);
+        alphaView = (AlphaView) findViewById(R.id.alphaView);
+        alphaView.observeColor(observableColor);
 
-		hexEdit = (EditText)findViewById(R.id.hexEdit);
-		HexEdit.setUpListeners(hexEdit, observableColor);
+        hexEdit = (EditText) findViewById(R.id.hexEdit);
+        HexEdit.setUpListeners(hexEdit, observableColor);
 
-		// We get all our state saved and restored for free,
-		// thanks to the EditText and its listeners!
-	}
+        // We get all our state saved and restored for free,
+        // thanks to the EditText and its listeners!
+    }
 
-	public int getColor() {
-		return observableColor.getColor();
-	}
+    public int getColor() {
+        return observableColor.getColor();
+    }
 
-	public void setColor(int color) {
-		swatchView.setOldColor(color);
-		observableColor.updateColor(color, null);
-	}
+    public void setColor(int color) {
+        swatchView.setOldColor(color);
+        observableColor.updateColor(color, null);
+    }
 
-	public void showAlpha(boolean showAlpha) {
-		alphaView.setVisibility(showAlpha ? View.VISIBLE : View.GONE);
-	}
+    public void showAlpha(boolean showAlpha) {
+        alphaView.setVisibility(showAlpha ? View.VISIBLE : View.GONE);
+    }
 
-	public void showHex(boolean showHex) {
-		hexEdit.setVisibility(showHex ? View.VISIBLE : View.GONE);
-	}
+    public void showValue(boolean showValue) {
+        valueView.setVisibility(showValue ? View.VISIBLE : View.GONE);
+    }
+
+    public void showHex(boolean showHex) {
+        hexEdit.setVisibility(showHex ? View.VISIBLE : View.GONE);
+    }
 }

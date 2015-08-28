@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
+<android.support.v7.preference.PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.rarepebble.colorpicker.ColorPreference
         android:key="simplePreference"
         android:title="@string/pref_title"
-        app:colorpicker_defaultColor="#f00"
+        app:colorpicker_showAlpha="false"
+        app:colorpicker_showHex="false"
         />
 
     <com.rarepebble.colorpicker.ColorPreference
@@ -19,9 +20,9 @@
     <com.rarepebble.colorpicker.ColorPreference
         android:key="opaquePreference"
         android:title="@string/pref_title_minimal"
+        app:colorpicker_defaultColor="#0f0"
         app:colorpicker_showAlpha="false"
         app:colorpicker_showHex="false"
-        app:colorpicker_defaultColor="#0f0"
         />
 
-</PreferenceScreen>
+</android.support.v7.preference.PreferenceScreen>
